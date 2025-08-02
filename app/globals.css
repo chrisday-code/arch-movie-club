@@ -67,3 +67,39 @@
     @apply bg-background text-foreground;
   }
 }
+
+h1 {
+  font-family: var(--font-poppins);
+  font-size: 2rem;
+  font: bold;
+}
+
+h2 {
+  font-family: var(--font-source-code-pro);
+  font-size: 1.8rem;
+  font: bold;
+}
+
+h3 {
+  font-family: var(--font-poppins);
+  font-size: 1.6rem;
+  font: bold;
+}
+
+h4 {
+  font-family: var(--font-source-code-pro);
+  font-size: 1rem;
+  color: var(--color-green-600);
+}
+
+caption {
+  font-family: var(--font-poppins);
+  font-size: 1rem;
+  font: bold;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+}

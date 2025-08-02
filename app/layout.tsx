@@ -3,13 +3,21 @@ import { EnvVarWarning } from "@/components/env-var-warning";
 import HeaderAuth from "@/components/header-auth";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
-import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
+import {
+  Geist,
+  Roboto_Mono,
+  Arimo,
+  Poppins,
+  Source_Code_Pro,
+  Inter,
+} from "next/font/google";
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+const defaultUrl =
+  process.env.VERCEL_URL ?
+    `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
 export const metadata = {
@@ -18,9 +26,41 @@ export const metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-const geistSans = Geist({
-  display: "swap",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+
+const arimo = Arimo({
+  variable: "--font-arimo",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const sourceCodePro = Source_Code_Pro({
+  variable: "--font-source-code-pro",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  variable: "--font-roboto-mono",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -29,7 +69,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geistSans.className} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${sourceCodePro.variable} ${geistSans.variable} ${arimo.variable} ${inter.variable} ${robotoMono.variable} ${poppins.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-background text-foreground">
         <ThemeProvider
           attribute="class"
@@ -47,12 +91,12 @@ export default function RootLayout({
                       <DeployButton />
                     </div>
                   </div>
-                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
+                  {!hasEnvVars ?
+                    <EnvVarWarning />
+                  : <HeaderAuth />}
                 </div>
               </nav>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
-                {children}
-              </div>
+              <div className="w-full flex-1 flex-col max-w-5xl">{children}</div>
 
               <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
                 <p>
